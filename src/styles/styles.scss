@@ -1,5 +1,8 @@
-$bg-color: pink;
+$bg-color: rgb(255, 255, 255);
 
 body {
  background: $bg-color;
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;
 }
