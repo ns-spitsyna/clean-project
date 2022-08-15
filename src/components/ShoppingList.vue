@@ -1,8 +1,10 @@
 <template>
 <div class="shopping-list">
-    <div  v-if="isShowShoppingList">
+    <router-link :to="{ name: 'main'}" >Назад к списку товаров</router-link>
+    <div v-if="isShowShoppingList">
         <h2>Список товаров</h2>
         <div class="shopping-list-item" v-for="product in shoppingList" :key="product.id">
+            <div class="shopping-list-img"><img :src="product.thumbnailUrl" /></div>
             <strong class="shopping-list-title">{{ product.title }}</strong>
             <div class="shopping-list-price">Цена: {{ product.id }} руб.</div>
             <div class="shopping-list-count"> {{ product.amount }} шт.</div>
@@ -11,6 +13,7 @@
                 class="delete-button"
                 :data-price="product.id"
                 :data-title="product.title"
+                :data-image="product.thumbnailUrl"
                 type="submit"
                 @click="deletePr(product.id)">
                 Удалить
@@ -33,7 +36,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 export default {
-    name: 'ProductList',
+    name: 'ShoppingList',
 
     computed: {
 	    ...mapGetters([ 'shoppingList', 'totalSum']),
@@ -64,6 +67,11 @@ export default {
     .shopping-list-title {
         width: 20%;
     }
+    .shopping-list-img {
+        img {
+            width: 50px;
+        }
+    }
     .delete-button {
         height: 100%;
     }
@@ -77,6 +85,7 @@ export default {
         .pay-button {
             width: 100px;
             height: 30px;
+            margin-bottom: 30px;
         }
     }
 }

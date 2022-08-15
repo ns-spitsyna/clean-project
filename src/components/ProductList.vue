@@ -1,12 +1,14 @@
 <template>
 <div class="product-list">
   <div class="product-card-item" v-for="product in allProducts" :key="product.id">
+        <div class="product-card-img"><img :src="product.thumbnailUrl" /></div>
         <strong class="product-card-title">{{ product.title }}</strong>
         <div class="product-card-price">Цена: {{ product.id }} руб.</div>
         <button
             class="product-card-button"
             :data-price="product.id"
             :data-title="product.title"
+            :data-image="product.thumbnailUrl"
             type="submit"
             @click="submit">
                 Купить
@@ -31,6 +33,7 @@ export default {
                 id: event.target.getAttribute('data-price'),
                 title: event.target.getAttribute('data-title'),
                 price: +event.target.getAttribute('data-price'),
+                thumbnailUrl: event.target.getAttribute('data-image'),
                 amount: 1,
                 sum: +event.target.getAttribute('data-price'),
             });
@@ -61,6 +64,11 @@ export default {
         margin-right: 20px;
         padding: 16px;
         border-radius: 8px;
+        .product-card-img {
+            img {
+                width: 100px;
+            }
+        }
     }
 
     .product-card-price {
