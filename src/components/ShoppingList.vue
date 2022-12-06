@@ -15,7 +15,7 @@
                 :data-title="product.title"
                 :data-image="product.thumbnailUrl"
                 type="submit"
-                @click="deletePr(product.id)">
+                @click="removeProduct(product.id)">
                 Удалить
             </button>
         </div>
@@ -49,7 +49,7 @@ export default {
     methods: {
         ...mapMutations([ 'deleteProduct']),
 
-        deletePr(id) {
+        removeProduct(id) {
             this.deleteProduct({id});
         },
 	},
